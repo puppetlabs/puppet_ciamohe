@@ -19,5 +19,7 @@ allows you to run some funky tests
 
     bundle install --path .bundle/gems/ --jobs 4
     bundle exec rake spec_prep
-    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run  puppet_ciamohe::myplan load_balancer=localhost
-
+    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::provisioner --inventoryfile inventory.yaml
+    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::server_setup  --inventoryfile inventory.yaml
+    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::agents  --inventoryfile inventory.yaml
+    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::tester  --inventoryfile inventory.yaml

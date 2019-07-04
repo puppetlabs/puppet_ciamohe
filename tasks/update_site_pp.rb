@@ -9,6 +9,7 @@ def update_file(manifest)
   raise Puppet::Error, _("stderr: ' %{stderr}') % { stderr: stderr }") if status != 0
   site_path = File.join(path, "site.pp")
   File.open(site_path, 'w+') { |f| f.write(manifest) }
+  'site.pp updated'
 end
 
 params = JSON.parse(STDIN.read)
