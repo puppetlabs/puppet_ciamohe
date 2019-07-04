@@ -1,0 +1,7 @@
+{
+	"description": "This task will install the configuration specified in the puppefile locally",
+	"input_method": "environment",
+	"parameters": {
+		"puppetfile": { "type": "String[1]" }
+	}
+}
