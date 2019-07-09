@@ -13,7 +13,7 @@
 
 ## Description
 
-allows you to run some funky tests, depends on https://github.com/puppetlabs/provision/pull/52
+allows you to run some funky tests
 
 ## Setup
 
