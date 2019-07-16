@@ -20,18 +20,21 @@ allows you to run some funky tests
     bundle install --path .bundle/gems/ --jobs 4
     bundle exec rake spec_prep
     # this will provision machines, and label them in the inventory files
-    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::provisioner --inventoryfile inventory.yaml
+    bundle exec bolt --modulepath ../puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::provisioner
     
     # this installs pe on a machines that is labelled in the inventory file, install a module, turn on autosign, set the ui password to litmus, updates the site.pp
-    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::server_setup  --inventoryfile inventory.yaml
+    bundle exec bolt --modulepath ../puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::server_setup  --inventoryfile inventory.yaml
     
     # only install the agent on the labeled machines, (we do not need the cert signing), run agent -t to module sync
-    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::agents  --inventoryfile inventory.yaml
+    bundle exec bolt --modulepath ../puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::agents  --inventoryfile inventory.yaml
     
     # for each agent machine to test against, create its own manifest on the server, trigger agent -t on the agent
-    bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::tester  --inventoryfile inventory.yaml
+    bundle exec bolt --modulepath ../puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::tester  --inventoryfile inventory.yaml
 
-What a run looks like:
+    # This teardown plan will decommission all the machines inside of the inventory.yaml file
+    bundle exec bolt --modulepath ../puppet_ciamohe/spec/fixtures/modules plan run puppet_ciamohe::teardown  --inventoryfile inventory.yaml
+    
+    What a run looks like:
 
 ```
 puppet_ciamohe git:(filtering) ✗ bundle exec bolt --modulepath /Users/tp/workspace/git/puppet_ciamohe/spec/fixtures/modules plan run  puppet_ciamohe::provisioner --inventoryfile inventory.yaml
